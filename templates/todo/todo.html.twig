@@ -13,15 +13,14 @@
     <script id="friendsTemplate" type="text/html">
 
 
-        <ul class="list-grup" id="sortable" data-bind="sortable: friends">
+        <ul class="todoList" id="sortable" data-bind="sortable: friends">
 
-            <li class="list-grup-item">
+            <li class="todoListItem">
 
                 <div class="row justify-content-md-center">
                     <div class="col-md-5 bord">
-                        <span data-bind="text: name"></span>
+                        <span class="todoText" index="" data-bind="text: name, attr: {index: $index}"></span>
                     </div>
-
                     <div class="col col-lg-2 no-bord">
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar">
                             <div class="btn-group mr-2" role="group" aria-label="First group">

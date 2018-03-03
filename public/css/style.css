@@ -18,7 +18,7 @@
     border:1px solid #A9A9A9;
 }
 */
-ul.list-grup{
+ul.todoList{
     list-style: none;
 }
 
@@ -32,7 +32,3 @@ ul.list-grup{
      border: 1px solid grey;
     border-radius: 20px;
  }
-
-test2 {
-    border: 1px solid black;
-}
