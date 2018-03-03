@@ -1,0 +1,44 @@
+{% extends 'todo/base.html.twig' %}
+
+{% block list %}
+
+    <button data-bind="click: addFriend">Click</button>
+
+    <h2>List</h2>
+
+    <div data-bind="template: 'friendsTemplate'"></div>
+
+
+
+    <script id="friendsTemplate" type="text/html">
+
+
+        <ul class="list-grup" id="sortable" data-bind="sortable: friends">
+
+            <li class="list-grup-item">
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-5 bord">
+                        <span data-bind="text: name"></span>
+                    </div>
+
+                    <div class="col col-lg-2 no-bord">
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-success btn-sav">Save</button>
+                                <button type="button" class="btn btn-danger btn-del" data-bind="click: $parent.deleteItem">Del</button>
+                                <button type="button" class="btn btn-info btn-edt">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </script>
+
+
+
+{% endblock %}

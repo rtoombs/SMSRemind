@@ -1,0 +1,10 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# config/routes.yaml
+
+# the "app_lucky_number" route name is not important yet
+todo_app:
+    path: /
+    controller: App\Controller\TodoController::go

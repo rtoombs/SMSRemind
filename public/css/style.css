@@ -1,0 +1,38 @@
+/*
+.list {
+    padding-top: 25px;
+}
+
+.row {
+    padding-bottom: 1px;
+}
+
+.list-top {
+    height:6em;
+    border:1px solid #A9A9A9;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.list-body {
+    height:3em;
+    border:1px solid #A9A9A9;
+}
+*/
+ul.list-grup{
+    list-style: none;
+}
+
+.row{
+    height: 50px;
+
+    margin-bottom: 10px;
+}
+
+.bord {
+     border: 1px solid grey;
+    border-radius: 20px;
+ }
+
+test2 {
+    border: 1px solid black;
+}
