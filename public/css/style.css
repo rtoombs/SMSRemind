@@ -25,10 +25,62 @@ ul.todoList{
 .row{
     height: 50px;
 
-    margin-bottom: 10px;
+}
+
+.todoText {
+    vertical-align: middle;
+    line-height: 43px;
 }
 
 .bord {
-     border: 1px solid grey;
-    border-radius: 20px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
  }
+
+
+.item-options {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    width:10px;
+    height: 50px;
+    position: relative;
+    color: #b9bbbe;
+
+}
+
+.options-icon {
+    position: absolute !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 21px;
+}
+
+.options-end {
+    border-right: 1px solid grey;
+}
+
+.options-begin {
+    border-left: 1px solid grey;
+}
+
+.option-del-icon:hover {
+    color: #b20600;
+}
+.option-setting-icon:hover {
+    color: rgb(5, 64, 144);
+}
+.option-check-icon:hover {
+    color: #0eac01;
+}
+
+.option-del-icon {
+    top: 41% !important;
+}
+
+.option-setting-icon {
+    top: 45% !important;
+}
+
+.option-check-icon {
+    top: 45% !important;
+}

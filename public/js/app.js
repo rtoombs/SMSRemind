@@ -49,9 +49,7 @@ $(document).ready(function () {
             $this.parent().text(newVal);
             ViewModel.updateItem(origVal, newVal, index);
         }
-        else {
-            $this.parent().text(origVal);
-        }
+        else { $this.parent().text(origVal);}
         $this.remove();
     });
 

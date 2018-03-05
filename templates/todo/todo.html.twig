@@ -18,18 +18,20 @@
             <li class="todoListItem">
 
                 <div class="row justify-content-md-center">
+
+                    <div class="col col-lg-auto item-options options-begin">
+                        <div class="oi oi-check options-icon option-check-icon" title="check" aria-hidden="true"/>
+                    </div>
                     <div class="col-md-5 bord">
                         <span class="todoText" index="" data-bind="text: name, attr: {index: $index}"></span>
                     </div>
-                    <div class="col col-lg-2 no-bord">
-                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" class="btn btn-success btn-sav">Save</button>
-                                <button type="button" class="btn btn-danger btn-del" data-bind="click: $parent.deleteItem">Del</button>
-                                <button type="button" class="btn btn-info btn-edt">Edit</button>
-                            </div>
-                        </div>
+                    <div class="col col-lg-auto item-options">
+                        <div class="oi oi-x options-icon option-del-icon" title="x" aria-hidden="true" data-bind="click: $parent.deleteItem"/>
                     </div>
+                    <div class="col col-lg-auto item-options options-end">
+                        <div class="oi oi-cog options-icon option-setting-icon" title="cog" aria-hidden="true"/>
+                    </div>
+
                 </div>
             </li>
 
