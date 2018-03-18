@@ -13,10 +13,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class TodoController extends Controller
 {
-    public function go()
-    {
-        $number = mt_rand(0, 100);
-
+    public function go() {
         return $this->render('todo/todo.html.twig');
     }
+
+    public function save() {
+        var_dump($_POST["data"]);
+        if (empty($POST["data"])){
+            return new Response('All is good in controller town');
+        } else {
+            return new Response('Some problem occured', 500);
+        }
+
+    }
+
 }

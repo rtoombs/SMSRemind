@@ -2,33 +2,30 @@
 
 {% block list %}
 
-    <button data-bind="click: addFriend">Click</button>
-
     <h2>List</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewItem">Add Item</button>
 
-    <div data-bind="template: 'friendsTemplate'"></div>
+    <div data-bind="template: 'listTemplate'"></div>
 
-
-
-    <script id="friendsTemplate" type="text/html">
-
-
-        <ul class="todoList" id="sortable" data-bind="sortable: friends">
+    <script id="listTemplate" type="text/html">
+        <ul class="todoList" id="sortable" data-bind="sortable: list">
 
             <li class="todoListItem">
 
-                <div class="row justify-content-md-center">
+                <div class="row justify-content-md-center" index="" data-bind="attr: {index: $index}">
 
-                    <div class="col col-lg-auto item-options options-begin">
-                        <div class="oi oi-check options-icon option-check-icon" title="check" aria-hidden="true"/>
+                    <div class="col col-lg-auto item-options options-begin" data-bind="css: {checked: checked}">
+                        <div class="oi oi-check options-icon option-check-icon" title="check" aria-hidden="true"
+                             data-bind="click: $root.completeItem.bind($root,$index(),$parent), css: {checked: checked}"/>
                     </div>
-                    <div class="col-md-5 bord">
+                    <div class="col-md-5 bord" data-bind="css: {checked: checked}">
                         <span class="todoText" index="" data-bind="text: name, attr: {index: $index}"></span>
                     </div>
-                    <div class="col col-lg-auto item-options">
-                        <div class="oi oi-x options-icon option-del-icon" title="x" aria-hidden="true" data-bind="click: $parent.deleteItem"/>
+                    <div class="col col-lg-auto item-options" data-bind="css: {checked: checked}">
+                        <div class="oi oi-x options-icon option-del-icon" title="x" aria-hidden="true"
+                             data-bind="click: $parent.deleteItem"/>
                     </div>
-                    <div class="col col-lg-auto item-options options-end">
+                    <div class="col col-lg-auto item-options options-end" data-bind="css: {checked: checked}">
                         <div class="oi oi-cog options-icon option-setting-icon" title="cog" aria-hidden="true"/>
                     </div>
 
@@ -36,10 +33,32 @@
             </li>
 
         </ul>
-
-
     </script>
 
+    <div class="modal fade" id="addNewItem" tabindex="-1" role="dialog" aria-labelledby="newItemModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newItemModalLabel">New List Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control newItemTitle modal-form-input" id="inputTitle"  placeholder="What would you like to do?">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary add-new-item disabled">Add to List</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

@@ -1,31 +1,57 @@
-function friend(name) {
+function listItem(name) {
     return {
-        name: ko.observable(name)
+        name: ko.observable(name),
+        checked: ko.observable(false)
     }
 }
 
 var vm = function () {
     var self = this;
-    this.friends = ko.observableArray([new friend("Steve"), new friend("Frank"), new friend("Frank"), new friend("John")]);
+    this.list = ko.observableArray([new listItem("Pick up Milk"), new listItem("Do Accounting Homework"), new listItem("Laundry"), new listItem("Call Mom")]);
 
-    this.addFriend = function () {
-        this.friends.push(new friend("Poop"));
-        console.log(this);
+    this.addItem = function (y) {
+        this.list.push(new listItem(y));
     };
 
     this.deleteItem = function (y) {
-        self.friends.remove(y);
+        self.list.remove(y);
+    };
+
+    this.completeItem = function (index,i,item) {
+        if (item.checked() == true){
+            item.checked(false);
+        } else {
+            item.checked(true);
+        }
     };
 
     this.updateItem = function (oldItem, newItem, pos) {
-        for (var item of this.friends()) {
-            if (item.name() == oldItem && this.friends().indexOf(item) == parseInt(pos)) {
-                self.friends.replace(item, new friend(newItem));
+        for (var item of this.list()) {
+            if (item.name() == oldItem && this.list().indexOf(item) == parseInt(pos)) {
+                item.name(newItem);
+                //self.list.replace(item, new this.list(newItem));
                 break;
             }
         }
-        console.log(this.friends());
     };
+
+    this.saveData = function () {
+        var jsonData = ko.toJS(self);
+        $.ajax({
+            url: '/data/update',
+            data: {data: ko.toJSON(jsonData)},
+            type: 'POST',
+            success: function (msg) {
+                console.log('Successfully Saved Data to Server!');
+            },
+            error: function (xhr, errormsg) {
+                console.log('Boo! Something Went Wrong!');
+                //window.location = '/';
+            }
+        });
+
+    };
+
 }
 
 $(document).ready(function () {
@@ -53,4 +79,28 @@ $(document).ready(function () {
         $this.remove();
     });
 
+    $('.add-new-item').click(function() {
+        var title = $('.newItemTitle').val().trim();
+        if (title.length > 0) {
+            ViewModel.addItem(title);
+            $('.newItemTitle').val('');
+            $('#addNewItem').modal('hide');
+            ViewModel.saveData();
+        }
+    });
+
+    $(".newItemTitle").on('keyup focusout', function() {
+        var x = $('.newItemTitle').val().trim();
+        if (x.length > 0 && x != null) {
+            $('.add-new-item').removeClass('disabled');
+        } else {
+            $('.add-new-item').addClass('disabled');
+        }
+    });
+
 });
+
+function SaveData() {
+    var jsonData = ko.toJS(this.vm);
+    console.log(jsonData);
+}

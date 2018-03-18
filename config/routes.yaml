@@ -8,3 +8,7 @@
 todo_app:
     path: /
     controller: App\Controller\TodoController::go
+
+save_data:
+    path: /data/update
+    controller: App\Controller\TodoController::save
