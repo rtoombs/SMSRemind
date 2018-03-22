@@ -49,9 +49,7 @@ var vm = function () {
                 //window.location = '/';
             }
         });
-
     };
-
 }
 
 $(document).ready(function () {
