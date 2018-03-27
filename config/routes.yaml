@@ -5,10 +5,18 @@
 # config/routes.yaml
 
 # the "app_lucky_number" route name is not important yet
-todo_app:
+login:
     path: /
+    controller: App\Controller\TodoController::login
+
+todo_app:
+    path: /go
     controller: App\Controller\TodoController::go
 
 save_data:
     path: /data/update
     controller: App\Controller\TodoController::save
+
+load_data:
+    path: /data/load
+    controller: App\Controller\TodoController::load

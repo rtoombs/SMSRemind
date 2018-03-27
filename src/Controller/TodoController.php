@@ -9,13 +9,18 @@
 namespace App\Controller;
 
 use App\Entity\ListData;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class TodoController extends Controller
 {
+    public function login() {
+        return $this->render('todo/login.html.twig');
+    }
+
     public function go() {
-        //$listData = $this->getDoctrine()->getRepository(ListData::class)->findBy(array('uid' => 1));
+        $loadInfo = $this->getDoctrine()->getRepository(ListData::class)->findOneBy(array('uid' => 1));
         return $this->render('todo/todo.html.twig');
     }
 
@@ -42,6 +47,14 @@ class TodoController extends Controller
         } else {
             return new Response('Some problem occured', 500);
         }
+
+    }
+
+    public function load() {
+        $loadInfo = $this->getDoctrine()->getRepository(ListData::class)->findOneBy(array('uid' => 1));
+        $temp = json_decode($loadInfo->getData());
+
+        return new JsonResponse(array('data' => $temp));
 
     }
 

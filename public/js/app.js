@@ -1,20 +1,22 @@
-function listItem(name) {
+function listItem(name,check) {
     return {
         name: ko.observable(name),
-        checked: ko.observable(false)
+        checked: ko.observable(check)
     }
 }
 
 var vm = function () {
     var self = this;
-    this.list = ko.observableArray([new listItem("Pick up Milk"), new listItem("Do Accounting Homework"), new listItem("Laundry"), new listItem("Call Mom")]);
+    //this.list = ko.observableArray([new listItem("Pick up Milk"), new listItem("Do Accounting Homework"), new listItem("Laundry"), new listItem("Call Mom")]);
+    this.list = ko.observableArray();
 
-    this.addItem = function (y) {
-        this.list.push(new listItem(y));
+    this.addItem = function (y,z) {
+        this.list.push(new listItem(y,z));
     };
 
     this.deleteItem = function (y) {
         self.list.remove(y);
+        self.saveData();
     };
 
     this.completeItem = function (index,i,item) {
@@ -23,6 +25,7 @@ var vm = function () {
         } else {
             item.checked(true);
         }
+        self.saveData();
     };
 
     this.updateItem = function (oldItem, newItem, pos) {
@@ -30,6 +33,7 @@ var vm = function () {
             if (item.name() == oldItem && this.list().indexOf(item) == parseInt(pos)) {
                 item.name(newItem);
                 //self.list.replace(item, new this.list(newItem));
+                self.saveData();
                 break;
             }
         }
@@ -54,8 +58,13 @@ var vm = function () {
 
 $(document).ready(function () {
     var ViewModel = new vm();
+    LoadData(ViewModel);
     ko.applyBindings(ViewModel);
-    $("#sortable").sortable();
+    $("#sortable").sortable({
+        stop: function(event, ui) {
+            ViewModel.saveData();
+        }
+    });
 
     var origVal;
     $(".todoList").on('dblclick', '.todoText', function () {
@@ -98,7 +107,28 @@ $(document).ready(function () {
 
 });
 
-function SaveData() {
-    var jsonData = ko.toJS(this.vm);
-    console.log(jsonData);
+function LoadData(vm) {
+    var temp;
+    $.ajax({
+        url: '/data/load',
+        data: {temp: temp},
+        type: 'GET',
+        success: function (msg) {
+            temp = msg;
+            assignData(temp,vm);
+        },
+        error: function (xhr, errormsg) {
+            console.log(xhr);
+            //window.location = '/';
+        }
+    });
+}
+
+function assignData(x,vm){
+    var y = x.data.list;
+    console.log(y[1].name);
+
+    for (var i = 0; i < y.length; i++) {
+        vm.addItem(y[i].name,y[i].checked);
+    }
 }
