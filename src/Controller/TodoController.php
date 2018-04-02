@@ -21,8 +21,15 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class TodoController extends Controller
 {
 
-    public function login() {
-        return $this->render('todo/login.html.twig');
+    public function login(Request $request) {
+        $session = $request->getSession();
+        $logged_in = $session->get('logged_in');
+        if ($logged_in){
+            return $this->render('todo/todo.html.twig');
+        }
+        else {
+            return $this->render('todo/login.html.twig');
+        }
     }
 
     public function registerPage() {
