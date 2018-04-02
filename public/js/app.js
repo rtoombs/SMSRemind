@@ -105,6 +105,20 @@ $(document).ready(function () {
         }
     });
 
+    $('.user-logout').click(function() {
+        $.ajax({
+            url: '/user/logout',
+            type: 'POST',
+            success: function (msg) {
+                window.location = '/';
+            },
+            error: function (xhr, errormsg) {
+                console.log('logout failed');
+                //window.location = '/';
+            }
+        });
+    });
+
 });
 
 function LoadData(vm) {

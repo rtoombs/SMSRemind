@@ -9,6 +9,10 @@ login:
     path: /
     controller: App\Controller\TodoController::login
 
+register_page:
+    path: /user/register
+    controller: App\Controller\TodoController::registerPage
+
 todo_app:
     path: /go
     controller: App\Controller\TodoController::go
@@ -20,3 +24,15 @@ save_data:
 load_data:
     path: /data/load
     controller: App\Controller\TodoController::load
+
+register_data:
+    path: /data/register
+    controller: App\Controller\TodoController::userRegister
+
+check_login:
+    path: /data/check_login
+    controller: App\Controller\TodoController::checkLogin
+
+logout:
+    path: /user/logout
+    controller: App\Controller\TodoController::logout

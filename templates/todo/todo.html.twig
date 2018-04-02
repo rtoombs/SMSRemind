@@ -1,10 +1,10 @@
 {% extends 'todo/base.html.twig' %}
 
 {% block list %}
-
+    <div class="uid" value="{{ id }}"></div>
+    <div class="logged_in" value="{{ logged_in }}"></div>
     <h2>List</h2>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewItem">Add Item</button>
-
     <div data-bind="template: 'listTemplate'"></div>
 
     <script id="listTemplate" type="text/html">

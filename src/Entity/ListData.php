@@ -21,11 +21,6 @@ class ListData
     }
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $uid;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $data;
@@ -37,12 +32,6 @@ class ListData
     private $modified;
 
     //Get and Set
-    public function getUid(){
-        return $this->uid;
-    }
-    public function setUid($uid){
-        $this->uid = $uid;
-    }
     public function getData() {
         return $this->data;
     }
